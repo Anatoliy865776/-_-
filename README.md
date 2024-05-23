@@ -1,3 +1,12 @@
+ 1.a.Зад присвоить имена топологий                               
+Режим конфигурация: configure – смена имени hostname <NAME>
+hostnamectl set-hostname <NAME>; exec bash /Присвоить всем кроме главного в топологии.
+b.Присвоить IP-адреса/Парм_соед->ПарамIPV4->DNS(8.8.8.8) (Вирт ПК)/Консоль команд:configure configure /Interface gigabitehernet 1/0/1/Ip address (вбить адрес)/Отк файрвол: ip firewall disable/Comm ; ping (Адрес)/Interface gigabitehernet 1/0/2/Ip address (вбить адрес)/Отк файрвол ip firewall disable/Выход: EX. Comm- примНастр/Краснам выделено echo (ИПадрес) > /etc/net/ifaces/ens192/ipv4addres/Echo default (ipadres) > /etc/net/ifases/ens192/ipv4route/Настройка Dns: echo nameserver (ipserv) > /etc/net/ifaces/ens192/resolv.conf/Ip a – проверка
+Перезапуск- systemctl restart network
+2. Вход в группы: configure/Object-group network LOCAL_NET(назва)/Укажим адрес IP address-range 192.168.100.1-192.168.100.62 выход ex/Группы для публАдрес:object-group network PUBLIC_POOL/Ip address (ip hq-r)/ exit/Source/Создаем пул адресов публ сети: pool TRANSLATE_ADDRESS/Ip addres 1.1.1.2/Правило: to interface gigabitehernet 1/0/1/Rule 1/Match source-address LOCAL_NET/Action source-nat pool TRANSLATE_ADDRESS/Enable/exit /ip route 0.0.0.0/0 1.1.1.1/Exit /comm / confirm/Проверка: ping 8.8.8.8 ip (внутрен адрес сети) 192.168.100.1/Настроить другой сервер/Configure /object-group network LOCAL_NET/Ip address-range 172.16.100.1-172.16.100.14/exit/Object-group network PUBLIC_POOL/Ip address 2.2.2.2/Exit /pool TRANSLATE_ADDRESS/ip address 2.2.2.2/exit/ruleset SNAT/to interface gigabitethernet 1/0/1 /rule 1 /match source-address LOCAL_NET/Action source-nat pool TRANSLATE_ADDRESS/enable/exit/exit/exit/Ip route 0.0.0.0/0 2.2.2.1 /exit/comm/confirm/Ping 8.8.8.8/Configure/tunnel gre 10/ip firewall disable/local address SQ-R(1.1.1.2) /remote addres 2.2.2.2/ip address 10.10.10.1/30/mtu 1426/ttl 18/enable/exit/exit/comm/confirm/Tunnel gre 10/ip firewall/disable/local address 2.2.2.2/remote address 1.1.1.2/ip address 10.10.10.2/30/ttl 18/mtu 1426/enable/ex/ex/comm/Ping10.10.10.1/Configure/router ospf 10 /router-id 1.1.1.1/area 1.1.1.1/network/192.168.100.0/26/ena/exit/enable/exit/Tunnel gre 10 ip ospf interface 10/ip ospf area 1.1.1.1/ip  ospf/exi/exi/comm/confirm/Configure/router ospf 10/router-id 2.2.2.2/area 1.1.1.1/network/172.16.100.0/20/enable/exit/enable/exit/tunnel gre 10/ip ospf instance 10/ip ospf area 1.1.1.1/ip ospf/exit/exit/comm/confirm
+
+
+
 ЗАДАНИЕ 1 МОДУЛЬ 1
 Пункт 1.
 А)
